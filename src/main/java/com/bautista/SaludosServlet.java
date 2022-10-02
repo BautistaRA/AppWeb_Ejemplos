@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.bautista;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -18,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpServlet;
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
-
 
 /**
  *
@@ -39,7 +39,7 @@ public class SaludosServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -63,10 +63,14 @@ public class SaludosServlet extends HttpServlet {
 
             }
             if (request.getHeader("sec-ch-ua").contains("Chrome")) {
-                out.println("Estar ejecutando en google chrome");
-            }else
-                out.print("Has utilizado otro");
-            out.println("<p>" + request.getHeader("user-agent"));
+                out.println("Estás  utilizando google chrome");
+            } else {
+                out.print("No estás utilizado google chome");
+            }
+
+            out.println("<p>" + "host "+ request.getHeader("host")+ " </p>");
+            out.println("<p>" +"Navegador " + request.getHeader("user-agent")+ " </p>");
+            out.println("<p>" +"Sistema operativo: " + request.getHeader("sec-ch-ua-platform"));
             out.println("<p> Chicos y chicas hoy es  " + new Date() + " </p>");
             out.println("</body>");
             out.println("</html>");
